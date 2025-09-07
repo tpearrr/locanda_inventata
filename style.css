@@ -41,50 +41,43 @@ header {
 /* Contenitore dei 3 riquadri -> griglia responsive */
 .menu {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  /* 16rem ≈ 256px: è la larghezza minima di ogni card prima di andare a capo */
-  gap: 3vw;
-  /* spazio fluido tra le card */
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); /* 16rem ≈ 256px: è la larghezza minima di ogni card prima di andare a capo */
+  gap: 3vw; /* spazio tra le card */
   align-items: start;
-  justify-items: center;
-  /* centra ogni card nella cella */
+  justify-items: center; /* centra ogni card nella cella */
   margin-top: 5vh;
 }
 
 /* Ogni riquadro riempie la colonna */
 .menu a {
-  position: relative;
+  display: grid;
+  place-items: center;
   width: 100%;
-  max-width: 28rem;
-  /* limite massimo per non allargare troppo su desktop */
+  max-width: 28rem; /* limite massimo per non allargare troppo su desktop */
   text-decoration: none;
   color: black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 /* Immagine adattata al contenitore */
 .menu a img {
+  grid-area: 1 / 1;
   width: 80%;
   height: auto;
-  /* mantiene proporzioni */
   display: block;
 
 }
 
 /* testo centrato sopra l’immagine */
 .menu a span {
-  position: absolute;
-  inset: 0;                     /* occupa tutta l’area della card */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  pointer-events: none;         /* clic passa all’ancora, non al testo */
+  grid-area: 1 / 1;            /* stessa cella dell’immagine */
+  z-index: 1;                  /* sopra l’immagine */
+  text-align: center;
+  pointer-events: none;        
   color: rgb(218, 201, 201);
   font-weight: bold;
   font-size: 1.4rem;
   text-shadow: 0 0 4px rgb(31, 6, 6);
+  padding: 0.25rem 0.5rem;     
 }
 
 /* effetto al passaggio del mouse */
