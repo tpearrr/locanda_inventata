@@ -53,6 +53,7 @@ header {
 
 /* Ogni riquadro riempie la colonna */
 .menu a {
+  position: relative;
   width: 100%;
   max-width: 28rem;
   /* limite massimo per non allargare troppo su desktop */
@@ -74,20 +75,16 @@ header {
 
 /* testo centrato sopra l’immagine */
 .menu a span {
-  display: flex;
   position: absolute;
-  top: 50%;
-  /*regola la posizione verticale  */
+  inset: 0;                     /* occupa tutta l’area della card */
+  display: flex;
   justify-content: center;
-  /* centra orizzontalmente */
   align-items: center;
-  /* centra verticalmente */
+  pointer-events: none;         /* clic passa all’ancora, non al testo */
   color: rgb(218, 201, 201);
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   text-shadow: 0 0 4px rgb(31, 6, 6);
-  /* rende leggibile */
-  transition: opacity 0.3s ease;
 }
 
 /* effetto al passaggio del mouse */
@@ -100,6 +97,16 @@ header {
 .menu a:hover span {
   opacity: 0;
   /* nascondi testo */
+}
+
+@media (max-width: 600px) {
+  .menu {
+    grid-template-columns: 1fr; /* forza 1 colonna se serve */
+    gap: 1rem;
+  }
+  .menu a span {
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
+  }
 }
 
 /* contenitore del pulsante */
