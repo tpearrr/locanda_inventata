@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Locanda L'Invenzione</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="img/Logo.svg" alt="Logo">
+            </a>
+        </div>
+    </header>
+    <main>
+        <section class="booking">
+            <h1>Prenota un tavolo</h1>
+
+            <form id="booking-form">
+                <label>
+                    Data
+                    <input type="date" name="date" required>
+                </label>
+
+                <label>
+                    Ora
+                    <input type="time" name="time" required>
+                </label>
+
+                <label>
+                    Persone
+                    <input type="number" name="party" min="1" step="1" required>
+                </label>
+
+                <label>
+                    Nome
+                    <input type="text" name="name" required>
+                </label>
+
+                <label>
+                    Telefono
+                    <input type="tel" name="phone">
+                </label>
+
+                <label>
+                    Email
+                    <input type="email" name="email">
+                </label>
+
+                <button type="button" id="btn-prenota">Prenota</button>
+            </form>
+
+            <p id="status"></p>
+        </section>
+
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p><strong>Locanda L'Invenzione</strong></p>
+            <p>P.IVA: 01234567890</p>
+            <p>Email: <a href="mailto:info@locandainvenzione.it">info@locandainvenzione.it</a></p>
+            <p>Cell: <a href="tel:+390123456789">+39 012 345 6789</a></p>
+            <p>&copy; 2025 Tutti i diritti riservati</p>
+        </div>
+    </footer>
+    <button id="backToTop">⬆ Torna su</button>
+    <script src="script.js"></script>
+</body>

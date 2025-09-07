@@ -1,0 +1,385 @@
+body {
+  background-color: #e6d3b7;
+  background: url("img/sfondo steakhouse.jpg") no-repeat center center;
+  background-size: cover;
+  position: relative;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  /* copre tutta la pagina */
+  background: #e6d3b788;
+  /* colore nero al 40% di trasparenza */
+  z-index: -1;
+  /* lo mette dietro al contenuto della pagina */
+  pointer-events: none;
+  /* permette di cliccare sugli elementi sottostanti */
+}
+
+/* LOGO */
+header {
+  display: flex;
+  justify-content: center;
+  /* centra orizzontalmente */
+  align-items: center;
+  /* centra verticalmente */
+  /* border: black 2px solid; */
+}
+
+.logo img {
+  height: 25vh;
+  /* 25% dell’altezza della finestra */
+  width: auto;
+  display: block;
+}
+
+/* Contenitore dei 3 riquadri -> griglia responsive */
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  /* 16rem ≈ 256px: è la larghezza minima di ogni card prima di andare a capo */
+  gap: 3vw;
+  /* spazio fluido tra le card */
+  align-items: start;
+  justify-items: center;
+  /* centra ogni card nella cella */
+  margin-top: 5vh;
+}
+
+/* Ogni riquadro riempie la colonna */
+.menu a {
+  width: 100%;
+  max-width: 28rem;
+  /* limite massimo per non allargare troppo su desktop */
+  text-decoration: none;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Immagine adattata al contenitore */
+.menu a img {
+  width: 80%;
+  height: auto;
+  /* mantiene proporzioni */
+  display: block;
+
+}
+
+/* testo centrato sopra l’immagine */
+.menu a span {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  /*regola la posizione verticale  */
+  justify-content: center;
+  /* centra orizzontalmente */
+  align-items: center;
+  /* centra verticalmente */
+  color: rgb(218, 201, 201);
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-shadow: 0 0 4px rgb(31, 6, 6);
+  /* rende leggibile */
+  transition: opacity 0.3s ease;
+}
+
+/* effetto al passaggio del mouse */
+.menu a:hover img {
+  filter: blur(0);
+  /* togli blur */
+  transform: scale(1.05);
+}
+
+.menu a:hover span {
+  opacity: 0;
+  /* nascondi testo */
+}
+
+/* contenitore del pulsante */
+.prenota {
+  text-align: center;
+  margin: 3vh 0;
+}
+
+/* stile pulsante */
+.btn-prenota {
+  display: inline-block;
+  padding: 1em 1em;
+  background-color: #e1b574;
+  /* marrone scuro */
+  color: rgb(49, 11, 11);
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn-prenota:hover {
+  background-color: #a0522d;
+  /* marrone più scuro */
+  transform: scale(1.05);
+  /* piccolo zoom al passaggio */
+}
+
+main {
+  padding-top: 5vh;
+  /* lascia spazio per l’header */
+  max-width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
+/* Header interno con logo + pulsante */
+.header-interno {
+  position: relative;
+  /* serve come riferimento per il pulsante */
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* Logo centrato */
+.header-interno .logo img {
+  height: 25vh;
+  width: auto;
+}
+
+/* Pulsante in alto a destra */
+.header-interno .btn-prenota {
+  position: absolute;
+  top: 40%;
+  right: 5%;
+  padding: 0.6em 0.6em;
+  background-color: #8B4513;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.header-interno .btn-prenota:hover {
+  background-color: #a0522d;
+  transform: scale(1.05);
+}
+
+/* Riquadro grande e centrato */
+.menu-wrap {
+  width: 90vw;
+  /* occupa quasi tutta la larghezza */
+  max-width: 100vw;
+  /* non superare la viewport */
+  height: 85vh;
+  /* quasi tutta l’altezza della pagina */
+  margin: 3vh auto;
+  /* centrato con margine sopra/sotto */
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 1rem;
+  backdrop-filter: blur(0.3rem);
+  overflow: hidden;
+
+  display: flex;
+  /* per far crescere l’iframe */
+  flex-direction: column;
+}
+
+/* Il PDF riempie il riquadro */
+.menu-pdf {
+  flex: 1;
+  width: 100%;
+  border: none;
+}
+
+/* Link di fallback (visibile e utile su dispositivi che non embeddano i PDF) */
+.pdf-fallback {
+  text-align: center;
+  padding: 1rem;
+  font-weight: 700;
+  color: #000;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+
+/* --- Galleria responsive --- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  /* max 3 colonne */
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 3rem;
+  padding: 1rem;
+}
+
+/* Ogni card quadrata */
+.gallery .card {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  /* sempre quadrato */
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Immagine dentro la card */
+.gallery .card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* riempie senza deformarsi */
+  transition: transform 1.0s ease;
+  filter: brightness(70%) blur(1px);
+  /* più scuro e sfocato */
+}
+.gallery .card:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+
+}
+.gallery .card:hover img {
+  transform: scale(1.5);
+}
+
+/* Testo centrato sull’immagine */
+.gallery .card span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: center;
+  text-shadow: 0 0 8px black;
+  pointer-events: none;
+  /* il click passa all’immagine sotto */
+}
+
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+#lightbox img {
+  aspect-ratio: 1 / 1;
+  /* quadrato forzato */
+  width: 80vmin;
+  /* 80% lato più piccolo della finestra */
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 20px black;
+}
+
+#lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+.storia{
+  font-size: 1.2rem;
+  border-style: solid;
+  border-color: #68330d;
+  background-color: #e1b57449;
+}
+
+footer {
+  background-color: rgba(83, 53, 12, 0.393);  /* sfondo scuro trasparente */
+  color: #fff;                        /* testo bianco */
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 5vh;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: #3b290c;   /* colore link */
+  text-decoration: none;
+}
+
+#backToTop {
+  position: fixed;
+  bottom: 2vh;       /* 2% dall’alto */
+  right: 2vh;        /* 2% dal lato destro */
+  display: none;              /* nascosto di default */
+  padding: 1em;
+  background: #8B4513;
+  color: white;
+  border: none;
+  border-radius: 10%;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  z-index: 3000;              /* sopra tutto */
+  transition: opacity 0.3s ease;
+}
+
+#backToTop:hover {
+  background: #a0522d;
+}
+
+.booking {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: rgba(255,255,255,0.8);
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
+#booking-form {
+  display: grid;
+  gap: 1rem;
+}
+
+#booking-form label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-weight: bold;
+}
+
+#booking-form input {
+  padding: 0.5rem;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+#btn-prenota {
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  background: #8B4513;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#btn-prenota:hover {
+  background: #a0522d;
+}
+
+#status {
+  margin-top: 1rem;
+  font-style: italic;
+}
